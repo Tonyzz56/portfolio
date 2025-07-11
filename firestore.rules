@@ -1,0 +1,154 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isUser(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function getUserData(userId) {
+      return get(/databases/$(database)/documents/users/$(userId)).data;
+    }
+
+    function isUserRole(userId, roleName) {
+      return getUserData(userId).role == roleName;
+    }
+
+    function isSuperAdmin(userId) {
+      return isSignedIn() && isUserRole(userId, 'superAdmin');
+    }
+
+    function isInstitutionAdmin(userId) {
+      return isSignedIn() && isUserRole(userId, 'institutionAdmin');
+    }
+
+    function isUserInstitutionAdmin(userId, institutionId) {
+      return isInstitutionAdmin(userId) && getUserData(userId).institutionId == institutionId;
+    }
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users Collection (`users/{userId}`)
+    match /users/{userId} {
+      // Any signed-in user can create their own user document during signup (Auth service will set initial fields)
+      // More restrictive create might be needed depending on signup flow for custom IDs.
+      allow create: if isSignedIn() && request.auth.uid == userId;
+                       // Ensure role is not superAdmin unless by a superAdmin or trusted function
+                       // && (request.resource.data.role != 'superAdmin' || isSuperAdmin(request.auth.uid))
+                       // Ensure institutionId is set if role requires it.
+
+      // Users can read their own document
+      allow read: if isUser(userId) || isSuperAdmin(request.auth.uid)
+                  // Institution admin can read users in their institution
+                  || (isInstitutionAdmin(request.auth.uid) && getUserData(request.auth.uid).institutionId == resource.data.institutionId);
+
+      // Users can update specific fields of their own document
+      allow update: if isUser(userId) &&
+                       !(request.resource.data.keys().hasAny(['email', 'role', 'institutionId', 'isActive', 'createdAt', 'customLoginId'])) // User cannot change these critical fields
+                  || isSuperAdmin(request.auth.uid) // SuperAdmin can update anything
+                  // Institution admin can update users in their institution (excluding role changes to admin roles)
+                  || (isInstitutionAdmin(request.auth.uid) &&
+                      getUserData(request.auth.uid).institutionId == resource.data.institutionId &&
+                      !(request.resource.data.keys().hasAny(['email'])) && // Inst. admin cannot change email
+                      // Inst. admin cannot change role to superAdmin or institutionAdmin
+                      (resource.data.role == getUserData(userId).role || (resource.data.role != 'superAdmin' && resource.data.role != 'institutionAdmin')) &&
+                      // Inst. admin cannot change institutionId
+                       resource.data.institutionId == getUserData(userId).institutionId
+                     );
+
+      // Deletion of user documents should be handled by Admin SDK or Firebase Functions for cleanup.
+      allow delete: if isSuperAdmin(request.auth.uid);
+    }
+
+    // Institutions Collection (`institutions/{institutionId}`)
+    match /institutions/{institutionId} {
+      // Allow SuperAdmins to do anything
+      allow read, write, create, delete: if isSuperAdmin(request.auth.uid);
+
+      // Allow InstitutionAdmins to read their own institution's document
+      allow get: if isSignedIn() && isUserInstitutionAdmin(request.auth.uid, institutionId);
+      // Allow any authenticated user to list/read basic institution details (e.g. for selection, if public) - adjust if needed
+      allow list: if isSignedIn();
+    }
+
+    // Announcements Collection (`announcements/{announcementId}`)
+    match /announcements/{announcementId} {
+      // Read access:
+      // 1. System-wide announcements: any authenticated user if no targetRoles or their role matches.
+      // 2. Institution-specific: if user belongs to the institution and no targetRoles or their role matches.
+      allow get, list: if isSignedIn() &&
+                        ( (resource.data.scope == 'system' &&
+                           (resource.data.targetRoles == null || resource.data.targetRoles.size() == 0 || getUserData(request.auth.uid).role in resource.data.targetRoles)) ||
+                          (resource.data.scope == 'institution' && resource.data.institutionId == getUserData(request.auth.uid).institutionId &&
+                           (resource.data.targetRoles == null || resource.data.targetRoles.size() == 0 || getUserData(request.auth.uid).role in resource.data.targetRoles))
+                        );
+
+      // Create access:
+      // 1. SuperAdmin can create 'system' or 'institution' scope.
+      // 2. InstitutionAdmin can create 'institution' scope for their own institution.
+      allow create: if (isSuperAdmin(request.auth.uid)) ||
+                       (isInstitutionAdmin(request.auth.uid) &&
+                        request.resource.data.scope == 'institution' &&
+                        request.resource.data.institutionId == getUserData(request.auth.uid).institutionId &&
+                        request.resource.data.createdByUid == request.auth.uid);
+
+      // Update/Delete access:
+      // 1. SuperAdmin can update/delete any.
+      // 2. InstitutionAdmin can update/delete announcements they created for their institution.
+      allow update, delete: if isSuperAdmin(request.auth.uid) ||
+                              (isInstitutionAdmin(request.auth.uid) &&
+                               resource.data.scope == 'institution' &&
+                               resource.data.institutionId == getUserData(request.auth.uid).institutionId &&
+                               resource.data.createdByUid == request.auth.uid);
+    }
+
+    // FileAssets Collection (`fileAssets/{assetId}`)
+    match /fileAssets/{assetId} {
+        // Creator can create/read/delete their own assets.
+        allow create: if isSignedIn() && request.resource.data.uploadedByUid == request.auth.uid;
+        allow read, delete: if isSignedIn() && resource.data.uploadedByUid == request.auth.uid;
+
+        // SuperAdmin can do anything.
+        allow read, write, delete: if isSuperAdmin(request.auth.uid);
+
+        // InstitutionAdmin can manage assets related to their institution.
+        // This rule needs refinement: how do we know if an asset is "related" to an institution?
+        // Assuming 'relatedToType' == 'institution_profile_pic' and 'relatedToId' == institutionId OR
+        // asset is uploaded by a user from that institution (less secure for general assets).
+        // For now, let's assume an InstitutionAdmin can manage assets uploaded by users of their institution.
+        allow read, delete: if isInstitutionAdmin(request.auth.uid) &&
+                              getUserData(resource.data.uploadedByUid).institutionId == getUserData(request.auth.uid).institutionId;
+
+        // More granular read access: e.g., if asset is course material, students in that course can read.
+        // This requires checking relatedToId and relatedToType against user's enrollments/permissions.
+        // Example (conceptual - needs supporting data structures):
+        // allow read: if isSignedIn() && (
+        //   (resource.data.relatedToType == 'course_material' && isUserEnrolledInCourse(request.auth.uid, resource.data.relatedToId)) ||
+        //   (resource.data.relatedToType == 'user_profile' && resource.data.relatedToId == request.auth.uid) // Profile pic of self
+        // );
+    }
+
+    // Placeholder for `rolesPermissions` collection (Phase 1, Step 4)
+    // match /rolesPermissions/{roleName} {
+    //   allow read: if isSignedIn(); // Or more restrictive
+    //   allow write: if isSuperAdmin(request.auth.uid);
+    // }
+
+    // Add other collections as they are implemented:
+    // - departments
+    // - classes, subjects, timetables
+    // - attendance, grades
+    // - payments, feeStructures
+    // - transport, vendors
+    // - etc.
+  }
+}
