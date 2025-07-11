@@ -1,0 +1,26 @@
+/* Custom styles can be added here if needed */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Add any additional global styles or Tailwind component customizations here */
+
+/* Styling for vehicle list table - hover effect */
+#vehicleList table tbody tr:hover {
+    background-color: #f9fafb; /* Tailwind's gray-50 */
+}
+
+/* Style for action buttons in the table for a bit more spacing if needed */
+#vehicleList table td button {
+    margin-right: 0.5rem; /* Tailwind's mr-2 */
+}
+#vehicleList table td button:last-child {
+    margin-right: 0;
+}
+
+/* Ensure inputs and selects in forms have consistent focus states if not fully covered by Tailwind */
+input:focus, select:focus, textarea:focus {
+    outline: none; /* Handled by Tailwind's focus:ring typically */
+    /* border-color: #3b82f6; Tailwind's focus:border-blue-500 */
+    /* box-shadow: 0 0 0 2px #bfdbfe; Tailwind's focus:ring-2 focus:ring-blue-300 */
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-lg">
+            <div class="container mx-auto flex flex-wrap justify-between items-center">
+                <h1 class="text-2xl font-bold tracking-tight">FleetMaster</h1>
+                <button id="logoutButton" class="hidden bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="container mx-auto p-4 sm:p-6 flex-grow">
+            <!-- Login Section -->
+            <section id="loginSection" class="max-w-lg mx-auto bg-white p-8 sm:p-10 rounded-xl shadow-2xl mt-8">
+                <h2 class="text-3xl font-bold mb-8 text-center text-blue-700">Welcome Back!</h2>
+                <form id="loginForm" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-gray-800 text-sm font-semibold mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" required
+                               class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                               placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-gray-800 text-sm font-semibold mb-2">Password</label>
+                        <input type="password" id="password" name="password" required
+                               class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+                               placeholder="••••••••••••">
+                    </div>
+                    <div>
+                        <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+                <p id="loginError" class="text-red-600 text-sm italic mt-6 text-center"></p>
+            </section>
+
+            <!-- Dashboard Section (Visible after login) -->
+            <section id="dashboardSection" class="hidden space-y-8">
+                <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Vehicle Dashboard</h2>
+                    <button id="showAddVehicleFormButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out transform hover:scale-105 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Add Vehicle
+                    </button>
+                </div>
+
+                <!-- Add/Edit Vehicle Form -->
+                <section id="vehicleFormSection" class="hidden mb-6 bg-white p-6 sm:p-8 rounded-xl shadow-xl transition-all duration-500 ease-in-out">
+                    <h3 id="vehicleFormTitle" class="text-2xl font-semibold mb-6 text-gray-700">Add New Vehicle</h3>
+                    <form id="vehicleForm" class="space-y-6">
+                        <input type="hidden" id="vehicleId"> <!-- For editing -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                            <div>
+                                <label for="make" class="block text-gray-700 text-sm font-semibold mb-1">Make</label>
+                                <input type="text" id="make" name="make" required placeholder="e.g., Ford" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="model" class="block text-gray-700 text-sm font-semibold mb-1">Model</label>
+                                <input type="text" id="model" name="model" required placeholder="e.g., Transit" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="year" class="block text-gray-700 text-sm font-semibold mb-1">Year</label>
+                                <input type="number" id="year" name="year" required placeholder="e.g., 2021" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="vin" class="block text-gray-700 text-sm font-semibold mb-1">VIN</label>
+                                <input type="text" id="vin" name="vin" required placeholder="Vehicle Identification Number" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="licensePlate" class="block text-gray-700 text-sm font-semibold mb-1">License Plate</label>
+                                <input type="text" id="licensePlate" name="licensePlate" required placeholder="e.g., ABC-123" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="status" class="block text-gray-700 text-sm font-semibold mb-1">Status</label>
+                                <select id="status" name="status" required class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 bg-white focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="Available">Available</option>
+                                    <option value="In Use">In Use</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-end space-x-4">
+                            <button type="button" id="cancelVehicleFormButton" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
+                                Cancel
+                            </button>
+                            <button type="submit" id="saveVehicleButton" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
+                                Save Vehicle
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Vehicle List Area -->
+                <section id="vehicleListSection" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-700">Managed Fleet</h3>
+                    <div id="vehicleListContainer" class="overflow-x-auto rounded-lg border border-gray-200">
+                        <!-- vehicleList table will be injected here by JS -->
+                         <div id="vehicleList">
+                            <p class="text-gray-500 p-6">No vehicles to display yet. Add one using the button above.</p>
+                         </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+
+        <footer class="bg-gray-800 text-center p-6 text-sm text-gray-400 mt-auto">
+            © <span id="currentYear"></span> FleetMaster Solutions. All Rights Reserved.
+        </footer>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <!-- It's recommended to use specific versions for production -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+
+    <!-- App Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
