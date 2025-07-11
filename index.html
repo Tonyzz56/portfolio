@@ -3,136 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleet Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Your Software Company</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Using the Tailwind CDN directly -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 font-sans">
-    <div id="app" class="min-h-screen flex flex-col">
-        <!-- Header -->
-        <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-lg">
-            <div class="container mx-auto flex flex-wrap justify-between items-center">
-                <h1 class="text-2xl font-bold tracking-tight">FleetMaster</h1>
-                <button id="logoutButton" class="hidden bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
-                    Logout
-                </button>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors">TechSolutions Inc.</a>
+            <div class="space-x-6">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About Us</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact Us</a>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <!-- Main Content Area -->
-        <main class="container mx-auto p-4 sm:p-6 flex-grow">
-            <!-- Login Section -->
-            <section id="loginSection" class="max-w-lg mx-auto bg-white p-8 sm:p-10 rounded-xl shadow-2xl mt-8">
-                <h2 class="text-3xl font-bold mb-8 text-center text-blue-700">Welcome Back!</h2>
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-gray-800 text-sm font-semibold mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" required
-                               class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                               placeholder="you@example.com">
-                    </div>
-                    <div>
-                        <label for="password" class="block text-gray-800 text-sm font-semibold mb-2">Password</label>
-                        <input type="password" id="password" name="password" required
-                               class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                               placeholder="••••••••••••">
-                    </div>
-                    <div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
-                            Sign In
-                        </button>
-                    </div>
-                </form>
-                <p id="loginError" class="text-red-600 text-sm italic mt-6 text-center"></p>
-            </section>
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-extrabold mb-6 drop-shadow-lg">👋 Hi there! Looking for Top-Notch Software Solutions?</h1>
+            <p class="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
+                We specialize in creating customized ERP systems, dynamic websites, stunning Graphics designs, robust web applications, and intuitive mobile apps tailored to your needs. With our expertise in technologies like Microsoft Dynamics, Flutter, ReactJS, C#, Java, SQL, MySQL, and WordPress, we ensure high-quality solutions that align perfectly with your vision.
+            </p>
+            <p class="text-2xl font-semibold mb-10">Let's discuss how we can bring your ideas to life!</p>
+            <a href="#contact" class="bg-yellow-400 text-blue-800 font-bold py-4 px-10 rounded-lg text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl">
+                Request a Quotation
+            </a>
+        </div>
+    </section>
 
-            <!-- Dashboard Section (Visible after login) -->
-            <section id="dashboardSection" class="hidden space-y-8">
-                <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Vehicle Dashboard</h2>
-                    <button id="showAddVehicleFormButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out transform hover:scale-105 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-                        </svg>
-                        Add Vehicle
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Our Core Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Service Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-blue-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Customized ERP Systems</h3>
+                    <p class="text-gray-600 leading-relaxed">Tailored Enterprise Resource Planning solutions to streamline your complex business processes and enhance efficiency.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                     <div class="text-green-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Dynamic Websites</h3>
+                    <p class="text-gray-600 leading-relaxed">Engaging, responsive, and SEO-friendly websites built with modern technologies to captivate your audience.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-purple-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Graphics Designing</h3>
+                    <p class="text-gray-600 leading-relaxed">Creative and impactful visual designs, from logos to complete brand identities, that tell your story.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Web Applications</h3>
+                    <p class="text-gray-600 leading-relaxed">Powerful, scalable, and secure web applications engineered to meet your specific business requirements.</p>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-yellow-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Mobile Apps (Flutter)</h3>
+                    <p class="text-gray-600 leading-relaxed">Cross-platform mobile applications with beautiful UIs and native performance, developed using Flutter.</p>
+                </div>
+                 <!-- Technologies Card -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300 md:col-span-2 lg:col-span-1">
+                   <div class="text-teal-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20v-6m0 0V4m0 6h10M7 10l3-3 3 3m-3-3v6" /></svg></div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Our Tech Stack</h3>
+                    <p class="text-gray-600 leading-relaxed">Microsoft Dynamics, Flutter, ReactJS, C#, Java, SQL, MySQL, WordPress, Python, Node.js, AWS, Azure, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">Why Choose Us?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
+                    We are more than just developers; we are your technology partners. Our mission is to empower businesses through innovative and tailored software solutions, helping you achieve your strategic goals and gain a competitive edge. #YourVisionOurCode 🚀
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div class="p-6">
+                    <div class="text-blue-600 mb-4 inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg></div>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-900">Expertise & Innovation</h3>
+                    <p class="text-gray-600">Leveraging cutting-edge technologies and a wealth of experience to deliver superior solutions.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-blue-600 mb-4 inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg></div>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-900">Client-Centric Approach</h3>
+                    <p class="text-gray-600">We prioritize your needs, ensuring transparent communication and collaborative development.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-blue-600 mb-4 inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-900">Results-Driven Quality</h3>
+                    <p class="text-gray-600">Committed to delivering high-quality, scalable, and maintainable software that drives results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-700 to-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-6">Let's Build Something Amazing Together!</h2>
+            <p class="text-center text-xl mb-12 max-w-2xl mx-auto">
+                Have a project idea, need a custom solution, or want to request a quotation? Fill out the form below, and our team will connect with you promptly.
+            </p>
+            <form id="contactForm" class="max-w-2xl mx-auto bg-white p-10 rounded-xl shadow-2xl text-gray-800">
+                <div id="formFeedback" class="mb-4 text-center"></div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="subject" class="block text-gray-700 font-semibold mb-2">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="e.g., ERP Development Quote" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                </div>
+                <div class="mb-8">
+                    <label for="message" class="block text-gray-700 font-semibold mb-2">Your Message / Project Details</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Describe your project or query here..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-yellow-400 text-blue-800 font-bold py-4 px-12 rounded-lg text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+                        Send Your Request
                     </button>
                 </div>
+            </form>
+            <div class="text-center mt-16">
+                <p class="text-xl mb-2">Or reach us directly:</p>
+                <p class="text-yellow-400 font-semibold text-lg hover:underline"><a href="mailto:info@techsolutions.com">info@techsolutions.com</a></p>
+                <p class="text-yellow-400 font-semibold text-lg hover:underline"><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            </div>
+        </div>
+    </section>
 
-                <!-- Add/Edit Vehicle Form -->
-                <section id="vehicleFormSection" class="hidden mb-6 bg-white p-6 sm:p-8 rounded-xl shadow-xl transition-all duration-500 ease-in-out">
-                    <h3 id="vehicleFormTitle" class="text-2xl font-semibold mb-6 text-gray-700">Add New Vehicle</h3>
-                    <form id="vehicleForm" class="space-y-6">
-                        <input type="hidden" id="vehicleId"> <!-- For editing -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                            <div>
-                                <label for="make" class="block text-gray-700 text-sm font-semibold mb-1">Make</label>
-                                <input type="text" id="make" name="make" required placeholder="e.g., Ford" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="model" class="block text-gray-700 text-sm font-semibold mb-1">Model</label>
-                                <input type="text" id="model" name="model" required placeholder="e.g., Transit" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="year" class="block text-gray-700 text-sm font-semibold mb-1">Year</label>
-                                <input type="number" id="year" name="year" required placeholder="e.g., 2021" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="vin" class="block text-gray-700 text-sm font-semibold mb-1">VIN</label>
-                                <input type="text" id="vin" name="vin" required placeholder="Vehicle Identification Number" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="licensePlate" class="block text-gray-700 text-sm font-semibold mb-1">License Plate</label>
-                                <input type="text" id="licensePlate" name="licensePlate" required placeholder="e.g., ABC-123" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="status" class="block text-gray-700 text-sm font-semibold mb-1">Status</label>
-                                <select id="status" name="status" required class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 bg-white focus:ring-blue-500 focus:border-blue-500">
-                                    <option value="Available">Available</option>
-                                    <option value="In Use">In Use</option>
-                                    <option value="Maintenance">Maintenance</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mt-8 flex justify-end space-x-4">
-                            <button type="button" id="cancelVehicleFormButton" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
-                                Cancel
-                            </button>
-                            <button type="submit" id="saveVehicleButton" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition duration-150 ease-in-out">
-                                Save Vehicle
-                            </button>
-                        </div>
-                    </form>
-                </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 TechSolutions Inc. All rights reserved. Crafted with ❤️ by Jules.</p>
+            <div class="mt-6 space-x-6">
+                <a href="#" class="hover:text-yellow-400 transition-colors">Facebook</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">Twitter</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
 
-                <!-- Vehicle List Area -->
-                <section id="vehicleListSection" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-700">Managed Fleet</h3>
-                    <div id="vehicleListContainer" class="overflow-x-auto rounded-lg border border-gray-200">
-                        <!-- vehicleList table will be injected here by JS -->
-                         <div id="vehicleList">
-                            <p class="text-gray-500 p-6">No vehicles to display yet. Add one using the button above.</p>
-                         </div>
-                    </div>
-                </section>
-            </section>
-        </main>
-
-        <footer class="bg-gray-800 text-center p-6 text-sm text-gray-400 mt-auto">
-            © <span id="currentYear"></span> FleetMaster Solutions. All Rights Reserved.
-        </footer>
-    </div>
-
-    <!-- Firebase SDKs -->
-    <!-- It's recommended to use specific versions for production -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
-    <!-- Firebase Config -->
-    <script src="js/firebase-config.js"></script>
-
-    <!-- App Script -->
-    <script src="js/app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

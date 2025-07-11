@@ -1,0 +1,52 @@
+/* Custom CSS styles - complement to Tailwind CSS */
+
+/* Smooth scrolling behavior for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Example of a custom animation class that can be triggered by JS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* Start a bit lower */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0; /* Start hidden, JS will trigger animation */
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.2s; /* Optional delay */
+}
+
+
+/* Additional custom styles can be added here as needed.
+   For instance, if you have very specific font requirements not easily
+   handled by Tailwind's default configuration, or complex background patterns. */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar (optional, for aesthetics - webkit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
