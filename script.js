@@ -1,24 +1,53 @@
 // JavaScript for website interactivity
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    // Mobile Menu Toggle
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Active Navigation Link Styling
+    const currentLocation = window.location.pathname.split('/').pop(); // Get current page filename
+    const navLinks = document.querySelectorAll('.nav-link'); // Use class selector
+
     navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        // For index.html, currentLocation might be empty or 'index.html'
+        if (linkPage === currentLocation || (currentLocation === '' && linkPage === 'index.html')) {
+            link.classList.add('text-blue-600', 'font-semibold'); // Active link styles
+            link.classList.remove('text-gray-700');
+        }
+    });
+
+
+    // Smooth scrolling for on-page anchor links (if any are added back)
+    const onPageNavLinks = document.querySelectorAll('a[href^="#"]'); // More generic selector
+    onPageNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            let targetId = this.getAttribute('href');
-            // Ensure targetId is not just "#" and an element with that ID exists
-            if (targetId.length > 1 && document.querySelector(targetId)) {
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            } else if (targetId === "#") { // Link to home/top
-                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            const href = this.getAttribute('href');
+            // Check if it's truly an on-page link and not just "#" for placeholder
+            if (href.length > 1 && href.startsWith('#')) {
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            } else if (href === "#") { // If it's just "#", prevent default but do nothing else or scroll to top
+                e.preventDefault();
+                // window.scrollTo({ top: 0, behavior: 'smooth' }); // Optional: scroll to top for "#"
             }
+            // If it's a full URL (e.g. index.html#some-section), normal browser navigation will handle it.
         });
     });
 
-    // Contact Form Submission
+    // Contact Form Submission (remains the same, but ensure it's on contact.html or loaded conditionally)
     const contactForm = document.getElementById('contactForm');
     const formFeedback = document.getElementById('formFeedback');
 

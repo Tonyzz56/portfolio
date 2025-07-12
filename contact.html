@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TechSolutions Inc.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50" id="main-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors">TechSolutions Inc.</a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Home</a>
+                <a href="services.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Services</a>
+                <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">About Us</a>
+                <a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">Home</a>
+            <a href="services.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">Services</a>
+            <a href="about.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">About Us</a>
+            <a href="contact.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4">Contact Us</a>
+        </div>
+    </header>
+
+    <main class="pt-16 md:pt-0"> {/* Adjusted padding top for sticky header */}
+        <section id="contact-main" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-extrabold text-gray-900 mb-4">Get In Touch</h1>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        We're excited to hear about your project! Whether you have a question, need a quotation, or just want to discuss your ideas, please feel free to reach out.
+                    </p>
+                </div>
+
+                <div class="max-w-3xl mx-auto bg-gray-50 p-8 md:p-12 rounded-xl shadow-2xl">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div id="formFeedback" class="mb-6 text-center"></div>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block text-gray-700 font-semibold mb-2">Company (Optional)</label>
+                            <input type="text" id="company" name="company" placeholder="Your Company Inc." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow">
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-semibold mb-2">Subject <span class="text-red-500">*</span></label>
+                            <input type="text" id="subject" name="subject" placeholder="e.g., Project Inquiry, ERP Quote" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required>
+                        </div>
+                        <div class="mb-8">
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Your Message / Project Details <span class="text-red-500">*</span></label>
+                            <textarea id="message" name="message" rows="6" placeholder="Describe your project, requirements, or query here..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-blue-600 text-white font-bold py-4 px-12 rounded-lg text-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                                Send Your Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="text-center mt-16">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Other Ways to Reach Us</h3>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2">Email Us</h4>
+                            <p class="text-gray-700 hover:underline"><a href="mailto:info@techsolutions.com">info@techsolutions.com</a></p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                            <h4 class="text-xl font-semibold text-blue-600 mb-2">Call Us</h4>
+                            <p class="text-gray-700 hover:underline"><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                        </div>
+                    </div>
+                    <!-- Placeholder for address and map if needed later -->
+                    <!--
+                    <div class="mt-8 bg-gray-50 p-6 rounded-lg shadow-lg">
+                        <h4 class="text-xl font-semibold text-blue-600 mb-2">Our Office</h4>
+                        <p class="text-gray-700">123 Tech Avenue, Innovation City, TX 75001</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10" id="main-footer">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 TechSolutions Inc. All rights reserved. Crafted with ❤️ by Jules.</p>
+            <div class="mt-6 space-x-6">
+                <a href="#" class="hover:text-yellow-400 transition-colors">Facebook</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">Twitter</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

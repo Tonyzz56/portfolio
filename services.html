@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - TechSolutions Inc.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50" id="main-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors">TechSolutions Inc.</a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Home</a>
+                <a href="services.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Services</a>
+                <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">About Us</a>
+                <a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 rounded-md">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">Home</a>
+            <a href="services.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">Services</a>
+            <a href="about.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4 border-b">About Us</a>
+            <a href="contact.html" class="block nav-link text-gray-700 hover:text-blue-600 transition-colors py-2 px-4">Contact Us</a>
+        </div>
+    </header>
+
+    <main class="pt-16 md:pt-0"> {/* Adjusted padding top for sticky header */}
+        <section id="services-full" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl font-bold text-center mb-4 text-gray-800">Our Comprehensive Services</h1>
+                <p class="text-center text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
+                    At TechSolutions Inc., we offer a wide array of software development and design services to bring your vision to life. Explore our offerings below to find the perfect solution for your business needs.
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-blue-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Customized ERP Systems</h3>
+                        <p class="text-gray-600 leading-relaxed">Tailored Enterprise Resource Planning solutions designed to streamline your complex business processes, enhance operational efficiency, and provide insightful data analytics. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                         <div class="text-green-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Dynamic Websites</h3>
+                        <p class="text-gray-600 leading-relaxed">Engaging, responsive, and SEO-friendly websites built with modern technologies to captivate your audience and convert visitors into customers. Includes e-commerce and CMS solutions. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-purple-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Graphics Designing</h3>
+                        <p class="text-gray-600 leading-relaxed">Creative and impactful visual designs, from logos and branding identities to marketing materials and UI/UX mockups, that tell your unique story and elevate your brand. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Web Applications</h3>
+                        <p class="text-gray-600 leading-relaxed">Powerful, scalable, and secure web applications engineered to meet your specific business requirements, including SaaS products, internal tools, and customer portals. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <!-- Service Card 5 -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-yellow-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Mobile Apps (Flutter & Native)</h3>
+                        <p class="text-gray-600 leading-relaxed">Cross-platform mobile applications (Flutter) and native iOS/Android solutions with beautiful UIs, smooth animations, and robust native performance to reach your users on any device. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                    </div>
+                     <!-- Technologies Card -->
+                    <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                       <div class="text-teal-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20v-6m0 0V4m0 6h10M7 10l3-3 3 3m-3-3v6" /></svg></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Our Tech Stack</h3>
+                        <p class="text-gray-600 leading-relaxed">Expertise in Microsoft Dynamics, Flutter, ReactJS, C#, Java, SQL, MySQL, WordPress, Python, Node.js, Swift, Kotlin, AWS, Azure, and more cutting-edge tools. We stay updated with the latest trends to deliver innovative and efficient solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-blue-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-6">Ready to Start Your Next Project?</h2>
+                <p class="text-lg mb-8 max-w-xl mx-auto">Let's discuss your requirements and how our expertise can help you achieve your business goals. We offer free consultations and project estimations.</p>
+                <a href="contact.html" class="bg-yellow-400 text-blue-800 font-bold py-3 px-8 rounded-lg hover:bg-yellow-300 transition-colors text-lg transform hover:scale-105">
+                    Get a Free Quote
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10" id="main-footer">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 TechSolutions Inc. All rights reserved. Crafted with ❤️ by Jules.</p>
+            <div class="mt-6 space-x-6">
+                <a href="#" class="hover:text-yellow-400 transition-colors">Facebook</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">Twitter</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
